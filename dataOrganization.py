@@ -23,4 +23,3 @@ for record in table:
     
     countyCounter = countyCounter + 1
     
-print(counties['warning1'])
