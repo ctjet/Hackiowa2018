@@ -7,6 +7,7 @@ Created on Sat Oct  6 10:45:58 2018
 
 from dbfread import DBF
 from calebTest import draw
+from CalebShapeFile import draw
 import csv
 
 def parse():
@@ -40,12 +41,18 @@ def parse():
         for key, line in counties.items():
             writer.writerow([key, line])
     
-    arrSV = []
-    arrFF = []
+    #arrSV = []
+    #arrFF = []
+    arrFL = {}
+
     for key, value in counties.items():
-        arrSV.append(counties[key]["numSV"])
-        arrFF.append(counties[key]["numFF"])
-    draw(arrSV)
-    webbrowser.open("my_heatmap.html")
+        #arrSV.append(counties[key]["numSV"])
+        #arrFF.append(counties[key]["numFF"])
+        arrFL[counties[key]["County_Name"]] = counties[key]["numFF"]/counties[key]["numSV"]
+
+    draw(arrFL)
+
+    # draw(arrSV)
+    # webbrowser.open("my_heatmap.html")
 
 parse()
