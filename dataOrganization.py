@@ -44,6 +44,5 @@ arrFF = []
 for key, value in counties.items():
     arrSV.append(counties[key]["numSV"])
     arrFF.append(counties[key]["numFF"])
-    
 draw(arrSV)
 webbrowser.open("my_heatmap.html")

@@ -13,9 +13,6 @@ from IPython.display import display
 
 def draw(magnitudes):
 
-    for mag in magnitudes:
-        print(mag)
-
     raw_data = pd.read_csv("DB\\IowaCountyData.csv")
 
     # Success! Display the first 5 rows of the dataset
@@ -29,7 +26,7 @@ def draw(magnitudes):
     gmap = gmplot.GoogleMapPlotter(41.8780, -93.0977, 7)
 
     # Overlay our datapoints onto the map
-    gmap.heatmap(latitudes, longitudes)
+    gmap.heatmap(latitudes, longitudes,magnitudes)
 
     gmap.draw("my_heatmap.html")
     print("Drawn")
