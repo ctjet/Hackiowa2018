@@ -14,13 +14,13 @@ countyCounter = 0
 
 for record in table:
     
-    tempDict["County"] = record["NWS_UGC"]
-    tempDict["Phenom"] = record["PHENOM"]
-    tempDict["Issued"] = record["ISSUED"]
+    if record["NWS_UGC"].startswith("IA"):
+        tempDict["County"] = record["NWS_UGC"]
+        tempDict["Phenom"] = record["PHENOM"]
+        tempDict["Issued"] = record["ISSUED"]
     
     counties["warning{}".format(countyCounter)] = tempDict
     
     countyCounter = countyCounter + 1
     
-for county in counties:
-    print(county)
+print(counties['warning1'])
