@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
+import webbrowser
+
 """
 Created on Sat Oct  6 10:45:58 2018
 """
 
 from dbfread import DBF
+from calebTest import draw
 import csv
 
 table = DBF('DB/Large/wwa_201801010000_201812312359.dbf')
@@ -38,3 +41,14 @@ with open('DB/merged_data.csv', 'w') as write_file:
     for key, line in counties.items():
         writer.writerow([key, line])
 
+arrSV = []
+arrFF = []
+i = 0
+for county in counties:
+    print(county)
+    # arrSV[i] = county["numSV"]
+    # arrFF[i] = county["numFF"]
+    i += 1
+
+draw(arrSV)
+webbrowser.open("my_heatmap.html")
