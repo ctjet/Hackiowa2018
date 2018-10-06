@@ -41,11 +41,9 @@ with open('DB/merged_data.csv', 'w') as write_file:
 
 arrSV = []
 arrFF = []
-i = 0
-for county in counties.items():
-    # arrSV[i] = county["numSV"]
-    # arrFF[i] = county["numFF"]
-    i += 1
-
+for key, value in counties.items():
+    arrSV.append(counties[key]["numSV"])
+    arrFF.append(counties[key]["numFF"])
+    
 draw(arrSV)
 webbrowser.open("my_heatmap.html")
