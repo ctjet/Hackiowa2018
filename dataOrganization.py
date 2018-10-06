@@ -10,7 +10,7 @@ table = DBF('DB/Large/wwa_201801010000_201812312359.dbf')
 
 
 counties = {}
-tempName = ""
+
 
 with open('DB/IowaCountyData.csv', 'r') as csv_file:
     csv_file = csv.reader(csv_file, delimiter=',', quotechar='"')
@@ -32,3 +32,9 @@ for record in table:
         elif record["PHENOM"] == "FF":
             counties[record["NWS_UGC"]]["numFF"] += 1
 
+
+with open('DB/merged_data.csv', 'w') as write_file:
+    writer = csv.writer(write_file)
+    for key, line in counties.items():
+        writer.writerow([key, line])
+        
