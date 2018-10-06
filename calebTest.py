@@ -15,41 +15,21 @@ import csv
 # For improved table display in the notebook
 from IPython.display import display
 
-
-
-
-
-# def gmapDraw():
-#     print("hi")
-
-#     raw_data = pd.read_csv("DB\\IowaCountyData.csv")
-
-#     # Success! Display the first 5 rows of the dataset
-#     # display(raw_data.head(n=5))
-#     # display(raw_data.info())
-#     latitudes = raw_data["Lat"]
-#     longitudes = raw_data["Long"]
-    
-#     test = [(1,2,3),(2,2,6)]
-#     earthquake_data = gmaps.datasets.load_dataset("earthquakes")
-
-#     print(earthquake_data[:4]) # first four rows
-
-#     m = gmaps.Map();
-#     # m.add_layer(gmaps.WeightedHeatmap(data = earthquake_data))
-#     m
-
-# gmapDraw()
-
 def draw(magnitudes):
 
     latitudes = []
     longitudes = []
+    countyLats = []
+    countyLongs = []
+    countyNames = []
 
     with open('./DB//IowaCountyData.csv', 'r') as _filehandler:
         csv_file_reader = csv.DictReader(_filehandler)
         i = 0;
         for row in csv_file_reader:
+            countyLats.append(float( row['Lat']))
+            countyLongs.append(float(row['Long']))
+            countyNames.append(row['CountyName'])
             for times in range(0,magnitudes[i]):
                 latitudes.append(float( row['Lat']))
                 longitudes.append(float(row['Long']))
@@ -84,8 +64,11 @@ def draw(magnitudes):
     # Overlay our datapoints onto the map
     #gmap.heatmap(latitudes, longitudes,magnitudes)
 
+    # for i in range(0, len(countyNames)):
+    #     gmap.marker(countyLats[i],countyLongs[i],countyNames[i])
+
     gmap.heatmap(lats = latitudes,lngs = longitudes,radius=20,opacity=.8)
-    
+
 
     gmap.draw("my_heatmap.html")
     print("Drawn")

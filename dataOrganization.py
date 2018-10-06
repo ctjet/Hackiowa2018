@@ -47,3 +47,5 @@ def parse():
         arrFF.append(counties[key]["numFF"])
     draw(arrSV)
     webbrowser.open("my_heatmap.html")
+
+parse()
