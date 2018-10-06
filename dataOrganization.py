@@ -32,4 +32,3 @@ for record in table:
         elif record["PHENOM"] == "FF":
             counties[record["NWS_UGC"]]["numFF"] += 1
 
-print(counties)
