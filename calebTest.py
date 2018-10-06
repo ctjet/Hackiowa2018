@@ -20,13 +20,14 @@ def draw(magnitudes):
     # display(raw_data.info())
     latitudes = raw_data["Lat"]
     longitudes = raw_data["Long"]
-
     # Creating the location we would like to initialize the focus on. 
     # Parameters: Lattitude, Longitude, Zoom
     gmap = gmplot.GoogleMapPlotter(41.8780, -93.0977, 7)
 
     # Overlay our datapoints onto the map
-    gmap.heatmap(latitudes, longitudes,magnitudes)
+    #gmap.heatmap(latitudes, longitudes,magnitudes)
+
+    gmap.heatmap(lats = latitudes,lngs = longitudes)
 
     gmap.draw("my_heatmap.html")
     print("Drawn")
