@@ -8,8 +8,6 @@ Created on Sat Oct  6 10:19:23 2018
 import pandas as pd
 import random
 import gmplot
-import gmaps
-import gmaps.datasets
 import csv
 
 # For improved table display in the notebook
