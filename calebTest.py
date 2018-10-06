@@ -11,7 +11,7 @@ import gmplot
 # For improved table display in the notebook
 from IPython.display import display
 
-raw_data = pd.read_csv("C:\\Users\\Caleb\\Desktop\\Projects\\Hackiowa2018\\DB\\IowaCountyData.csv")
+raw_data = pd.read_csv("DB\\IowaCountyData.csv")
 
 # Success! Display the first 5 rows of the dataset
 display(raw_data.head(n=5))

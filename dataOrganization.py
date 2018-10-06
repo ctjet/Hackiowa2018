@@ -37,4 +37,4 @@ with open('DB/merged_data.csv', 'w') as write_file:
     writer = csv.writer(write_file)
     for key, line in counties.items():
         writer.writerow([key, line])
-        
+
