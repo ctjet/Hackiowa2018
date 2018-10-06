@@ -14,12 +14,10 @@ table = DBF('DB/Large/wwa_201801010000_201812312359.dbf')
 
 counties = {}
 
-
 with open('DB/IowaCountyData.csv', 'r') as csv_file:
     csv_file = csv.reader(csv_file, delimiter=',', quotechar='"')
     
     rowCount = 0
-    
     for row in csv_file:
         if rowCount != 0:
             counties[row[0]] = {"County_Name":row[1], "Lat":row[2], "Long":row[3], "numSV":0, "numFF":0}
@@ -44,8 +42,7 @@ with open('DB/merged_data.csv', 'w') as write_file:
 arrSV = []
 arrFF = []
 i = 0
-for county in counties:
-    print(county)
+for county in counties.items():
     # arrSV[i] = county["numSV"]
     # arrFF[i] = county["numFF"]
     i += 1
