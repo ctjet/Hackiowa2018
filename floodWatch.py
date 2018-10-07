@@ -52,11 +52,12 @@ while True:
         server.login("hackathoniniowa@gmail.com", "JungleH@ckathon")
         server.sendmail(
           "Flood Alert Ralston-Creek", 
-          "hogan-myers@uiowa.edu",
+          "hogan-myers@uiowa.edu", #EMAIL GOES HERE
           "Ralston creek at flooding levels! {} feet!".format(river_depth))
           #"Ralston creek at flooding levels! {} feet at {}".format(river_depth,time.ctime()))
         server.quit()
     
     
+    #THIS IS USALLY 15 MIN or 900 SEC but decreased time refresh to show examples quicker
     time.sleep(300.0 - ((time.time() - starttime) % 300.0))
     
