@@ -6,8 +6,7 @@ Created on Sat Oct  6 10:45:58 2018
 """
 
 from dbfread import DBF
-from calebTest import draw
-from CalebShapeFile import draw
+from dataVisual import draw
 import csv
 
 def parse():

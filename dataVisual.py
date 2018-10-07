@@ -1,34 +1,38 @@
-from dbfread import dbf
+import shapefile as shp
+import matplotlib.pyplot as plt
+from dbfread import DBF
 
-"""
-Created on Sat Oct  6 10:19:23 2018
-"""
 
-#Nut sack please work
-import pandas as pd
-import random
-import gmplot
-# For improved table display in the notebook
-from IPython.display import display
+def draw(magnitudeDictionary):
+  sf = shp.Reader("Shape/county.shp",)
+  table = DBF('Shape/county.dbf')
 
-raw_data = pd.read_csv("C:\\Users\\Caleb\\Desktop\\Projects\\Hackiowa2018\\DB\\IowaCountyData.csv")
-
-# Success! Display the first 5 rows of the dataset
-display(raw_data.head(n=5))
-display(raw_data.info())
-latitudes = raw_data["Lat"]
-longitudes = raw_data["Long"]
+  maxVal = max(magnitudeDictionary.values())
 
 
 
+  names = []
+  for record in table:
+    names.append(record["COUNTY"])
+
+  plt.figure()
+
+  # numShapes = len(sf.shapeRecords())
+
+  step = 1/maxVal
+
+  current = 0
+  for shape in sf.shapeRecords():
+    curMag = magnitudeDictionary[names[current]]
 
 
-# Creating the location we would like to initialize the focus on. 
-# Parameters: Lattitude, Longitude, Zoom
-gmap = gmplot.GoogleMapPlotter(41.8780, 93.0977, 5)
+    c = (curMag*step,1-curMag*step,0)
+    x = [i[0] for i in shape.shape.points[:]]
+    y = [i[1] for i in shape.shape.points[:]]
+    plt.fill(x,y,color = c)
+    plt.plot(x,y,color = 'black')
+    current +=1
 
-# Overlay our datapoints onto the map
-gmap.heatmap(latitudes, longitudes)
+  plt.show()
 
-gmap.draw("my_heatmap.html")
-
+# draw()
