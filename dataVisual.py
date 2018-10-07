@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from dbfread import DBF
 
 
-def draw(magnitudeDictionary):
+def draw(magnitudeDictionary, title):
   plt.close()
 
   sf = shp.Reader("Shape/county.shp",)
@@ -18,6 +18,7 @@ def draw(magnitudeDictionary):
     names.append(record["COUNTY"])
 
   plt.figure()
+  plt.suptitle(title)
 
   # numShapes = len(sf.shapeRecords())
   if maxVal != 0:
@@ -36,7 +37,6 @@ def draw(magnitudeDictionary):
     plt.fill(x,y,color = c)
     plt.plot(x,y,color = 'black')
     current +=1
-
   plt.show()
 
 # draw()
