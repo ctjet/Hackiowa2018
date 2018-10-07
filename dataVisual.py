@@ -18,8 +18,10 @@ def draw(magnitudeDictionary):
   plt.figure()
 
   # numShapes = len(sf.shapeRecords())
-
-  step = 1/maxVal
+  if maxVal != 0:
+      step = 1/maxVal
+  else:
+      step = 0
 
   current = 0
   for shape in sf.shapeRecords():
