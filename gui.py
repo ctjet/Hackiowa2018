@@ -35,7 +35,10 @@ denomOptMen = OptionMenu(master, denomVar, *DENOMOPTIONS)
 
 
 def reDraw(event):
-    parse(top.get(),bottom.get(), strToPhenom(numVar.get()), strToPhenom (denomVar.get()), "Iowa: "+ numVar.get()+"/"+denomVar.get()+ " For " + str(top.get()) + " - "+ str(bottom.get()))
+    tempStr ="" 
+    if denomVar.get()!="None": 
+        tempStr = "/"+denomVar.get()
+    parse(top.get(),bottom.get(), strToPhenom(numVar.get()), strToPhenom (denomVar.get()), "Iowa: "+ numVar.get()+tempStr+" For " + str(top.get()) + " - "+ str(bottom.get()))
 
 
 
