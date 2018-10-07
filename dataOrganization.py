@@ -48,7 +48,7 @@ def parse():
     for key, value in counties.items():
         #arrSV.append(counties[key]["numSV"])
         #arrFF.append(counties[key]["numFF"])
-        arrFL[counties[key]["County_Name"]] = counties[key]["numFF"]/counties[key]["numSV"]
+        arrFL[counties[key]["County_Name"]] = counties[key]["numFF"] #counties[key]["numFF"]/counties[key]["numSV"]
 
     draw(arrFL)
 

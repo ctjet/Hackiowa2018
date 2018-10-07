@@ -30,6 +30,7 @@ def draw(magnitudeDictionary):
     x = [i[0] for i in shape.shape.points[:]]
     y = [i[1] for i in shape.shape.points[:]]
     plt.fill(x,y,color = c)
+    plt.plot(x,y,color = 'black')
     current +=1
 
   plt.show()
