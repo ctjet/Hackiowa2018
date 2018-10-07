@@ -10,9 +10,9 @@ from dataVisual import draw
 import csv
 
 def parse():
-    table = DBF('DB/Large/wwa_201801010000_201812312359.dbf')
-    
-    
+    #table = DBF('DB/Large/wwa_201801010000_201812312359.dbf')
+   
+    table = DBF('DB/IowaLongTime/wwa_201001010000_201712310000.dbf')
     counties = {}
     
     with open('DB/IowaCountyData.csv', 'r') as csv_file:
@@ -47,7 +47,7 @@ def parse():
     for key, value in counties.items():
         #arrSV.append(counties[key]["numSV"])
         #arrFF.append(counties[key]["numFF"])
-        arrFL[counties[key]["County_Name"]] = counties[key]["numFF"] #counties[key]["numFF"]/counties[key]["numSV"]
+        arrFL[counties[key]["County_Name"]] = counties[key]["numFF"]/counties[key]["numSV"]
 
     draw(arrFL)
 
