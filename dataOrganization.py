@@ -10,7 +10,7 @@ from dataVisual import draw
 import csv
 import datetime
 
-def parse(dateStart, dateEnd):
+def parse(dateStart, dateEnd, numerator, denominator, title):
     
     #table = DBF('DB/Large/wwa_201801010000_201812312359.dbf')
    
@@ -23,7 +23,7 @@ def parse(dateStart, dateEnd):
         rowCount = 0
         for row in csv_file:
             if rowCount != 0:
-                counties[row[0]] = {"County_Name":row[1], "Lat":row[2], "Long":row[3], "numSV":0, "numFF":0}
+                counties[row[0]] = {"County_Name":row[1], "Lat":row[2], "Long":row[3], "numSV":0, "numFF":0, "numTO":0}
             
             rowCount += 1
     
@@ -35,26 +35,35 @@ def parse(dateStart, dateEnd):
                     counties[record["NWS_UGC"]]["numSV"] += 1
                 elif record["PHENOM"] == "FF":
                     counties[record["NWS_UGC"]]["numFF"] += 1
+                elif record["PHENOM"] == "TO":
+                    counties[record["NWS_UGC"]]["numTO"] += 1
     
     
-    with open('DB/merged_data.csv', 'w') as write_file:
-        writer = csv.writer(write_file)
-        for key, line in counties.items():
-            writer.writerow([key, line])
+    # with open('DB/merged_data.csv', 'w') as write_file:
+    #     writer = csv.writer(write_file)
+    #     for key, line in counties.items():
+    #         writer.writerow([key, line])
     
     #arrSV = []
     #arrFF = []
-    arrFL = {}
+    arrMag = {}
 
     for key, value in counties.items():
-        #arrSV.append(counties[key]["numSV"])
-        #arrFF.append(counties[key]["numFF"])
-        if counties[key]["numSV"] != 0:
-            arrFL[counties[key]["County_Name"]] = counties[key]["numFF"]/counties[key]["numSV"]
-        else:
-            arrFL[counties[key]["County_Name"]] = 0
 
-    draw(arrFL)
+        if denominator=="N":
+            arrMag[counties[key]["County_Name"]] = counties[key][numerator]
+        else:
+            if counties[key][denominator] != 0:
+                arrMag[counties[key]["County_Name"]] = counties[key][numerator]/counties[key][denominator]
+            else:
+                arrMag[counties[key]["County_Name"]] = 0
+
+        # if counties[key]["numSV"] != 0:
+        #     arrFL[counties[key]["County_Name"]] = counties[key]["numFF"]/counties[key]["numSV"]
+        # else:
+        #     arrFL[counties[key]["County_Name"]] = 0
+
+    draw(arrMag,title)
 
     # draw(arrSV)
     # webbrowser.open("my_heatmap.html")
