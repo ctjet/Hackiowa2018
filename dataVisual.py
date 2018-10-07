@@ -4,6 +4,8 @@ from dbfread import DBF
 
 
 def draw(magnitudeDictionary):
+  plt.close()
+
   sf = shp.Reader("Shape/county.shp",)
   table = DBF('Shape/county.dbf')
 

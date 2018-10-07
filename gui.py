@@ -7,8 +7,10 @@ top = Scale(master, from_=2010, to=2017, orient=HORIZONTAL)
 
 bottom = Scale(master, from_=2010, to=2017, orient=HORIZONTAL)
 
-def reDraw():
-    parse()
+button = Button(master,text = "Redraw")
+
+def reDraw(event):
+    parse(top.get(),bottom.get())
 
 
 
@@ -20,6 +22,8 @@ def topSliderRelease(event):
     if bottom.get()<top.get():
         bottom.set(top.get())
 
+button.bind("<ButtonRelease-1>",reDraw)
+
 top.bind("<ButtonRelease-1>",topSliderRelease)
 bottom.bind("<ButtonRelease-1>",bottomSliderRelease)
 toplabel = Label(master, text="Start Date")
@@ -28,6 +32,7 @@ top.pack()
 bottomLabel = Label(master, text="End Date")
 bottomLabel.pack()
 bottom.pack()
+button.pack()
 
 
 
